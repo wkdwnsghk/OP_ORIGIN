@@ -315,7 +315,7 @@ class CarInterface(CarInterfaceBase):
     ret.cruiseState.standstill = False
 
     # Some HKG cars only have blinker flash signal
-    if self.CP.carFingerprint not in [CAR.IONIQ, CAR.KONA, CAR.SELTOS]:
+    if self.CP.carFingerprint not in [CAR.IONIQ, CAR.KONA]:
       self.CS.left_blinker_on = self.CS.left_blinker_flash or self.CS.prev_left_blinker_on and self.CC.turning_signal_timer
       self.CS.right_blinker_on = self.CS.right_blinker_flash or self.CS.prev_right_blinker_on and self.CC.turning_signal_timer
 
@@ -354,7 +354,7 @@ class CarInterface(CarInterfaceBase):
     self.turning_indicator_alert = True if self.CC.turning_signal_timer and self.CS.v_ego < 16.666667 else False
 
     # LKAS button alert logic
-    self.lkas_button_alert = True if not self.CC.lkas_button else False
+    # self.lkas_button_alert = True if not self.CC.lkas_button else False
 
     events = []
     if not ret.gearShifter == GearShifter.drive:
